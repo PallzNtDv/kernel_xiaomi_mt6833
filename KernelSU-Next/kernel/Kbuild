@@ -204,13 +204,12 @@ endif
 ifeq ($(CONFIG_KSU_MANUAL_HOOK), y)
 HAVE_KSU_HOOK := $(shell grep -q "ksu_handle_sys_reboot" $(srctree)/kernel/reboot.c && echo 0 || echo 1)
 ifeq ($(HAVE_KSU_HOOK),0)
-HAVE_KSU_HOOK := 0
 $(info -- KernelSU-Next: Hook mode: Manual)
 endif
 endif
 
 ifneq ($(HAVE_KSU_HOOK),0)
-$(error -- KernelSU-Next: No hooks were defined, please integrate manual hooks in your kernel!)
+$(warning -- KernelSU-Next: No hooks were defined, please integrate manual hooks in your kernel!)
 endif
 
 # some backports
